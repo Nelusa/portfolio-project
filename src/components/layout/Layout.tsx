@@ -1,15 +1,18 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
-import HamburgerMenu from "../ui/HamburgerMenu";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <motion.main
-        className={`flex min-h-screen flex-col px-8 mt-8`}
+      <motion.div
+        className="flex flex-col flex-grow justify-center items-center px-8"
         initial={{
           opacity: 0,
         }}
@@ -21,9 +24,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
         }}
       >
         {children}
-      </motion.main>
+      </motion.div>
       <Footer />
-    </>
+    </div>
   );
 };
 

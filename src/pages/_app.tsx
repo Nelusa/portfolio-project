@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Sulphur_Point } from "next/font/google";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 //@ts-ignore
 const AnimatedCursor = dynamic(() => import("react-animated-cursor"), {
@@ -16,10 +17,15 @@ const sulphurPoint = Sulphur_Point({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={sulphurPoint.className}>
-      <AnimatedCursor color="249, 189,	6" outerAlpha={0.2} outerSize={6} />
-      {/* <CustomCursor /> */}
-      <Component {...pageProps} />
-    </main>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <main className={sulphurPoint.className}>
+        <AnimatedCursor color="230, 138,	0" outerAlpha={0.5} outerSize={6} />
+        {/* <CustomCursor /> */}
+        <Component {...pageProps} />
+      </main>
+    </>
   );
 }

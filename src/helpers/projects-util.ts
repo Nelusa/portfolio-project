@@ -2,11 +2,17 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-export function getProjectsFiles() {
+interface ProjectData {
+  slug: string;
+  [key: string]: any;
+  content: string;
+}
+
+export function getProjectsFiles(): string[] {
   return fs.readdirSync(path.join(process.cwd(), "src", "projects-content"));
 }
 
-export function getProjectData(projectIdentifier) {
+export function getProjectData(projectIdentifier: string): ProjectData {
   const projectSlug = projectIdentifier.replace(/\.md$/, ""); //odstraní přípomu MD a nahradí ji prázdným stringem
   const filePath = path.join(
     process.cwd(),
@@ -17,7 +23,7 @@ export function getProjectData(projectIdentifier) {
   const fileContent = fs.readFileSync(filePath, "utf-8"); //čtení obsahu ze získaného souboru (pro jeden soubor)
   const { data, content } = matter(fileContent); //vrátí nám objekt se dvěma vlastnostmi - data (JS objekt) a content (string)
 
-  const projectData = {
+  const projectData: ProjectData = {
     slug: projectSlug,
     ...data, //metadata z MD souboru
     content: content,
@@ -27,7 +33,7 @@ export function getProjectData(projectIdentifier) {
 }
 
 // projde všechny MD soubory ve složce "content" a získá jejich metadata
-export function getAllProjects() {
+export function getAllProjects(): ProjectData[] {
   const projectFiles = getProjectsFiles();
 
   //získáme data pro konkrétní příspěvky
@@ -43,7 +49,7 @@ export function getAllProjects() {
   return sortedProjects;
 }
 
-export function getFeaturedProjects() {
+export function getFeaturedProjects(): ProjectData[] {
   const allProjects = getAllProjects();
 
   const featuredProjects = allProjects.filter((project) => project.isFeatured);

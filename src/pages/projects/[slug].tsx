@@ -1,20 +1,36 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import {
-  getAllProjects,
-  getProjectData,
-  getProjectsFiles,
-} from "../../helpers/projects-util";
+import { getProjectData, getProjectsFiles } from "../../helpers/projects-util";
 import Head from "next/head";
 import { Fragment } from "react";
 import { ParsedUrlQuery } from "querystring";
+import Layout from "@/components/layout/Layout";
+import ProjectDetail from "@/components/projects/ProjectDetail";
+
+export interface Technology {
+  name: string;
+  icon: string;
+}
+
+export interface Stats {
+  label: string;
+  value: string;
+}
 
 export interface Project {
+  id: number;
   name: string;
   description: string;
+  description2: string;
   topic: string;
   code: string;
   slug: string;
   image: string;
+  technologies: Technology[];
+  excerpt: string;
+  role: string;
+  plan: string;
+  type: string;
+  stats: Stats[];
 }
 
 interface ProjectDetailPageProps {
@@ -32,7 +48,9 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ project }) => {
         <title>{project.name}</title>
         <meta name="description" content={`${project.description}`} />
       </Head>
-      {/* <PostContent post={project} /> */}
+      <Layout>
+        <ProjectDetail project={project} />
+      </Layout>
     </Fragment>
   );
 };
@@ -41,20 +59,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
   const { slug } = params as Params;
 
-  const postData = getProjectData(slug); //to nám poskytne data pro požadovaný soubor
+  const projectData = getProjectData(slug);
 
   return {
     props: {
-      post: postData,
+      project: projectData,
     },
-    revalidate: 600, //tady to dává smysl
+    revalidate: 3000,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const postFilenames = getProjectsFiles();
+  const projectFilenames = getProjectsFiles();
 
-  const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ""));
+  const slugs = projectFilenames.map((fileName) =>
+    fileName.replace(/\.md$/, "")
+  );
 
   return {
     paths: slugs.map((slug) => ({
@@ -62,8 +82,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
         slug: slug,
       },
     })),
-    fallback: false, // definování všech cest předem
-    //fallback: true, //data budou načtena na požádání při každém navštívení stránky --> toto by fungovalo v případě, kdybychom měli tisíce příspěvků a nějaká část z nich by byla málo navštěvovaná
+    fallback: false,
   };
 };
 

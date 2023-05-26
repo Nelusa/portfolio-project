@@ -16,6 +16,9 @@ module.exports = {
         primary: "#F9BD06",
         secondary: "#FACA38",
         tertiary: "#F9D06C",
+        primary_orange: "#F28B32",
+        secondary_orange: "#F59E0B",
+        tertiary_orange: "#FDB83F",
       },
       fontFamily: {
         body: ["Sulphur Point", "sans-serif"],

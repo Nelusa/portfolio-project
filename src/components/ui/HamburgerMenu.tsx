@@ -26,19 +26,6 @@ const sideVariants = {
   },
 };
 
-const pathVariants = {
-  closed: {
-    strokeDashoffset: 100, // cesta se nezobrazí
-  },
-  open: {
-    strokeDashoffset: 0, // cesta se zobrazí
-    transition: {
-      duration: 0.5, // doba trvání animace
-      ease: "easeOut", // typ animace
-    },
-  },
-};
-
 interface HamburgerMenuProps {
   currentPath: string;
 }
@@ -52,7 +39,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentPath }) => {
 
   return (
     <>
-      {" "}
       <div className="cursor-pointer">
         <Bars3Icon width={36} onClick={handleIconClick} />
       </div>
@@ -99,16 +85,19 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentPath }) => {
                     >
                       <span
                         className={`${
-                          currentPath === href
-                            ? "before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary/60 relative inline-block"
+                          currentPath === href ||
+                          currentPath === `${href}/[slug]`
+                            ? "before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-gradient-to-r from-primary/60 to-primary_orange/70 relative inline-block"
                             : ""
                         }`}
                       >
                         <Link
                           href={href}
                           className={`${
-                            currentPath === href &&
-                            "relative font-bold cursor-auto"
+                            currentPath === href ||
+                            currentPath === `${href}/[slug]`
+                              ? "relative font-bold cursor-auto"
+                              : ""
                           }`}
                         >
                           {label}

@@ -4,9 +4,10 @@ import {
   PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import Input, { InputProps } from "./Input";
+import Input, { InputProps } from "../contact/Input";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
+import ButtonGlow from "../ui/ButtonGlow";
 
 const inputs = [
   {
@@ -150,13 +151,7 @@ const ContactForm = () => {
               </div>
             </div>
             <div className="mt-8 flex justify-end">
-              <Button type="submit">Contact me!</Button>
-              {/*  <button
-                type="submit"
-                className="rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              >
-                Contact me!
-              </button> */}
+              <ButtonGlow type="submit">Contact me!</ButtonGlow>
             </div>
           </div>
         </form>

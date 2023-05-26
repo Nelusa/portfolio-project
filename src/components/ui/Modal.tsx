@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 
-const Modal = () => {
+const Modal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const { push } = useRouter();
 

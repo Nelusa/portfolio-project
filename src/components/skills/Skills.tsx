@@ -1,48 +1,33 @@
-import { RectangleStackIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
-import Skill from "./Skill";
-const skills = [
-  {
-    name: "React.js",
-    icon: "/icons/react--icon.svg",
-  },
-  {
-    name: "JavaScript",
-    icon: "/icons/javascript--icon.svg",
-  },
-  {
-    name: "Next.js",
-    icon: " /icons/nextjs--icon.svg",
-  },
-  {
-    name: "Tailwind CSS",
-    icon: "/icons/tailwind--icon.svg",
-  },
-  {
-    name: "Framer Motion",
-    icon: "/icons/react.svg",
-  },
-  {
-    name: "TypeScript",
-    icon: "/icons/typescript--icon.svg",
-  },
+import React from "react";
+import SkillLayout from "./SkillLayout";
+import { skills } from "../../data/skills";
+
+const skillCategories = [
+  { category: "Development" },
+  { category: "Design" },
+  { category: "Project Management" },
 ];
 
-const Skills = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleIsHovered = () => {
-    setIsHovered(true);
-  };
-
+const Skills: React.FC = () => {
   return (
-    <section className="bg-gray-900 py-12">
-      <h2 className="text-3xl text-white font-bold mb-8">Skills</h2>
-      <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {skills.map((skill) => {
-          return <Skill key={skill.name} skill={skill} isHovered={isHovered} />;
-        })}
-      </div>
+    <section className="bg-gray-900 py-12 gap-20 flex flex-col">
+      {skillCategories.map((category) => (
+        <div key={category.category}>
+          <h2 className="text-3xl font-bold mb-8">{category.category}</h2>
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+            {skills
+              .filter((skill) => skill.category === category.category)
+              .map((skill) => (
+                <SkillLayout
+                  key={skill.name}
+                  headingText={skill.name}
+                  imageSrc={skill.icon}
+                  imageAlt={skill.name}
+                />
+              ))}
+          </div>
+        </div>
+      ))}
     </section>
   );
 };

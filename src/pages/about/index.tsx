@@ -1,17 +1,15 @@
 import AboutInfo from "@/components/about/AboutInfo";
-import AboutInfo2 from "@/components/about/AboutInfo2";
 import Arrow from "@/components/about/Arrow";
 import Layout from "@/components/layout/Layout";
 import React from "react";
 
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
   return (
     <Layout>
       <h1>About</h1>
-      {/* <AboutInfo /> */}
-      <div className="flex gap-10">
+      <div className="flex gap-10 mx-auto">
         <Arrow />
-        <AboutInfo2 />
+        <AboutInfo />
       </div>
     </Layout>
   );

@@ -1,12 +1,12 @@
 import Layout from "@/components/layout/Layout";
-import Skills from "@/components/skills/Skills";
 import React from "react";
+import Timeline from "@/components/experience/Timeline";
 
-const ExperiencePage = () => {
+const ExperiencePage: React.FC = () => {
   return (
     <Layout>
       <h1>Experience</h1>
-      <Skills />
+      <Timeline />
     </Layout>
   );
 };

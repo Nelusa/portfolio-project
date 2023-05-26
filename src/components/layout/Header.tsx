@@ -1,13 +1,12 @@
 import React from "react";
 import Navigation from "./Navigation";
-import Link from "next/link";
 import Logo from "./Logo";
 import { motion } from "framer-motion";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <motion.header
-      className="flex justify-between items-center bg-transparent h-20 px-3"
+      className="flex justify-between items-center bg-transparent h-20 px-3 mt-3 mb-10"
       initial={{
         y: -500,
         opacity: 0,

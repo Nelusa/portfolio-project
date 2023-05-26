@@ -19,7 +19,6 @@ const CustomCursor: React.FC = () => {
   }, []);
 
   const handleClick = () => {
-    // Nastav novou barvu kurzoru
     setCursorColor("red");
   };
 

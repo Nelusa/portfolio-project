@@ -1,14 +1,5 @@
 import React from "react";
-
-export interface InputProps {
-  input: {
-    id: string;
-    colSpan?: boolean;
-    label: string;
-    name: string;
-    autoComplete: string;
-  };
-}
+import { InputProps } from "@/components/contact/InputNew";
 
 const Input: React.FC<InputProps> = ({ input }) => {
   const { id, colSpan, label, name, autoComplete } = input;
