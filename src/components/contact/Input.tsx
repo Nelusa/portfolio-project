@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { InputProps } from "@/components/contact/InputNew";
 
 const Input: React.FC<InputProps> = ({ input }) => {
@@ -26,3 +26,4 @@ const Input: React.FC<InputProps> = ({ input }) => {
 };
 
 export default Input;
+ */

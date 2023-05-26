@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 export interface InputProps {
   input: {
@@ -55,3 +55,4 @@ const InputNew: React.FC<InputProps> = ({
 };
 
 export default InputNew;
+ */
