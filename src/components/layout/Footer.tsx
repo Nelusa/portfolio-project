@@ -58,7 +58,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`max-w-7xl px-6 py-8 ${
+      className={`px-6 py-8 ${
         !homePagePath && "md:flex md:items-center md:justify-between"
       } lg:px-8 mt-20`}
     >
