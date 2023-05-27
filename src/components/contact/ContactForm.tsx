@@ -46,7 +46,7 @@ interface ContactFormProps {
   input: InputProps;
 }
 
-const ContactFormOwnHook: React.FC = () => {
+const ContactForm: React.FC = () => {
   const {
     value: enteredFirstName,
     isValid: enteredFirstNameIsValid,
@@ -112,6 +112,10 @@ const ContactFormOwnHook: React.FC = () => {
     });
 
     if (!formIsValid) {
+      firstNameBlurHandler();
+      lastNameBlurHandler();
+      emailBlurHandler();
+      messageBlurHandler();
       return;
     }
 
@@ -297,4 +301,4 @@ const ContactFormOwnHook: React.FC = () => {
   );
 };
 
-export default ContactFormOwnHook;
+export default ContactForm;
